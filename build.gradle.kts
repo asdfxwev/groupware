@@ -11,22 +11,15 @@ java {
     sourceCompatibility = JavaVersion.VERSION_17
 }
 
-// developmentOnly configuration 생성
-val developmentOnly: Configuration by configurations.creating
-
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
     }
-    // developmentOnly를 runtimeClasspath에 추가
-    runtimeClasspath {
-        extendsFrom(developmentOnly)
-    }rr
 }
 
 repositories {
     mavenCentral()
-}r
+}
 
 dependencies {
     // Spring Boot Starters
@@ -42,7 +35,7 @@ dependencies {
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
-    // DevTools - 이제 에러 없이 작동
+    // DevTools
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     // Test
