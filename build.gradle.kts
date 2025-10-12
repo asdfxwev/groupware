@@ -69,3 +69,11 @@ tasks.named("clean") {
         file("build/generated").deleteRecursively()
     }
 }
+
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    mainClass.set("com.example.groupware.GroupwareApplication")
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    mainClass.set("com.example.groupware.GroupwareApplication")
+}
