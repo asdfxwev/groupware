@@ -17,4 +17,24 @@ public class BoardServiceImpl implements BoardService {
         return boardRepository.findAll(pageable)
                 .map(BoardResponseDto::from);
     }
+
+    @Override
+    @Transactional
+    public BoardResponseDto updateBoard(Long id, BoardRequestDto request) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. id=" + id));
+
+        board.update(request.getTitle(), request.getContent());
+
+        return BoardResponseDto.from(board);
+    }
+
+    @Override
+    @Transactional
+    public void deleteBoard(Long id) {
+        if (!boardRepository.existsById(id)) {
+            throw new IllegalArgumentException("게시글이 존재하지 않습니다. id=" + id);
+        }
+        boardRepository.deleteById(id);
+    }
 }
