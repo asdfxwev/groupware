@@ -21,7 +21,7 @@ public class BoardController {
     }
 
     // 글 수정
-    @PutMapping("/boardList/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<BoardResponseDto> updateBoard(
             @PathVariable Long id,
             @RequestBody BoardRequestDto request) {
@@ -29,7 +29,7 @@ public class BoardController {
     }
 
     // 글 삭제하기
-    @DeleteMapping("/board/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteBoard(@PathVariable Long id) {
         boardService.deleteBoard(id);
         return ResponseEntity.noContent().build();
