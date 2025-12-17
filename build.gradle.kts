@@ -28,8 +28,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-    // Database
-    runtimeOnly("com.h2database:h2")
+    // mysql
+    runtimeOnly("com.mysql:mysql-connector-j")
 
     // Lombok
     compileOnly("org.projectlombok:lombok")

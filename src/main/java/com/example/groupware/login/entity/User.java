@@ -1,4 +1,4 @@
-package com.example.groupware.login;
+package com.example.groupware.login.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,5 +1,6 @@
 package com.example.groupware.board;
 
+import com.example.groupware.board.entity.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,5 +1,6 @@
 package com.example.groupware.board;
 
+import com.example.groupware.board.entity.Board;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDateTime;

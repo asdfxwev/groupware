@@ -1,4 +1,4 @@
-package com.example.groupware.board;
+package com.example.groupware.board.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

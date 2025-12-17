@@ -1,6 +1,7 @@
 package com.example.groupware.board;
 
 
+import com.example.groupware.board.entity.Board;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -11,10 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
-import static com.example.groupware.board.QBoard.board;
-
-import com.example.groupware.board.QBoard;
 
 @Repository
 @RequiredArgsConstructor
