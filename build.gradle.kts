@@ -70,6 +70,32 @@ tasks.named("clean") {
     }
 }
 
+// 프론트엔드 빌드 자동화
+val frontendDir = file("frontend")
+val npm = if (System.getProperty("os.name").lowercase().contains("windows")) "npm.cmd" else "npm"
+
+tasks.register<Exec>("npmInstall") {
+    description = "frontend npm 패키지 설치"
+    workingDir = frontendDir
+    commandLine(npm, "install")
+    inputs.file("$frontendDir/package-lock.json")
+    outputs.dir("$frontendDir/node_modules")
+}
+
+tasks.register<Exec>("buildFrontend") {
+    description = "frontend Vite 빌드"
+    dependsOn("npmInstall")
+    workingDir = frontendDir
+    commandLine(npm, "run", "build")
+    inputs.dir("$frontendDir/src")
+    inputs.files("$frontendDir/login.html", "$frontendDir/board.html", "$frontendDir/vite.config.ts")
+    outputs.dir("src/main/resources/static")
+}
+
+tasks.named("processResources") {
+    dependsOn("buildFrontend")
+}
+
 tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
     mainClass.set("com.example.groupware.GroupwareApplication")
 }

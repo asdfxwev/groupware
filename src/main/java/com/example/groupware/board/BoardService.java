@@ -9,4 +9,8 @@ public interface BoardService {
     BoardResponseDto updateBoard(Long id, BoardRequestDto request);
 
     void deleteBoard(Long id);
+
+    BoardResponseDto createBoard(BoardRequestDto request);
+
+    BoardResponseDto getBoard(Long id);
 }

@@ -11,4 +11,5 @@ public interface BoardRepository {
     Optional<Board> findBoardById(Long id);
     void deleteBoardById(Long id);
     boolean existsBoardById(Long id);
+    Board save(Board board);
 }

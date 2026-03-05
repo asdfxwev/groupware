@@ -22,7 +22,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     @Transactional
     public BoardResponseDto updateBoard(Long id, BoardRequestDto request) {
-        Board board = boardRepository.findById(id)
+        Board board = boardRepository.findBoardById(id)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. id=" + id));
 
         board.update(request.getTitle(), request.getContent());
@@ -32,10 +32,30 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     @Transactional
+    public BoardResponseDto createBoard(BoardRequestDto request) {
+        Board board = Board.builder()
+                .title(request.getTitle())
+                .content(request.getContent())
+                .writer(request.getWriter())
+                .build();
+        return BoardResponseDto.from(boardRepository.save(board));
+    }
+
+    @Override
+    @Transactional
+    public BoardResponseDto getBoard(Long id) {
+        Board board = boardRepository.findBoardById(id)
+                .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다. id=" + id));
+        board.increaseViewCount();
+        return BoardResponseDto.from(board);
+    }
+
+    @Override
+    @Transactional
     public void deleteBoard(Long id) {
-        if (!boardRepository.existsById(id)) {
+        if (!boardRepository.existsBoardById(id)) {
             throw new IllegalArgumentException("게시글이 존재하지 않습니다. id=" + id);
         }
-        boardRepository.deleteById(id);
+        boardRepository.deleteBoardById(id);
     }
 }

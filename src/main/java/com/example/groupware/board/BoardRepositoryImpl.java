@@ -2,6 +2,7 @@ package com.example.groupware.board;
 
 
 import com.example.groupware.board.entity.Board;
+import com.example.groupware.board.entity.QBoard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,12 @@ public class BoardRepositoryImpl implements BoardRepository {
                 .where(QBoard.board.id.eq(id))
                 .fetchFirst();
         return result != null;
+    }
+
+    @Override
+    public Board save(Board board) {
+        em.persist(board);
+        return board;
     }
 
 }
